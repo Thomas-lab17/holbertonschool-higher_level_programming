@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-"""Module to list all states from database"""
+"""Module to list all states from database."""
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-
-    """Lists all states sorted by id"""
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
