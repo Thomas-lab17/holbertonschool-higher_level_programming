@@ -3,8 +3,8 @@
 with their associated state names, sorted by cities.id."""
 import MySQLdb
 import sys
- 
- 
+
+
 if __name__ == "__main__":
     db = MySQLdb.connect(
         host="localhost",
@@ -24,4 +24,3 @@ if __name__ == "__main__":
         print(row)
     cursor.close()
     db.close()
- 
