@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""List states matching a user-provided name safely from MySQL database."""
+"""List cities of a given state from MySQL database."""
 import MySQLdb
 import sys
 
 
 def main() -> None:
-    """Print rows from `states` where name matches the supplied argument."""
+    """Print city names for the provided state, ordered by city id."""
     user = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]
-    searched_name = sys.argv[4]
+    state_name = sys.argv[4]
 
     db = MySQLdb.connect(
         host="localhost",
@@ -21,11 +21,14 @@ def main() -> None:
     )
     cursor = db.cursor()
     cursor.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (searched_name,)
+        "SELECT cities.name "
+        "FROM cities JOIN states ON cities.state_id = states.id "
+        "WHERE states.name = %s "
+        "ORDER BY cities.id ASC",
+        (state_name,),
     )
-    for row in cursor.fetchall():
-        print(row)
+    rows = cursor.fetchall()
+    print(", ".join(row[0] for row in rows))
     cursor.close()
     db.close()
 

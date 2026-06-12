@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-"""Module to list all states from database."""
+"""List all states from the specified MySQL database."""
 import MySQLdb
 import sys
 
-if __name__ == "__main__":
+
+def main() -> None:
+    """Print all rows from the states table ordered by id."""
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -13,15 +15,16 @@ if __name__ == "__main__":
         port=3306,
         user=username,
         passwd=password,
-        db=database
+        db=database,
+        charset="utf8",
     )
-
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
-    results = cursor.fetchall()
-
-    for row in results:
-        print(row)
-
+    for state in cursor.fetchall():
+        print(state)
     cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    main()
