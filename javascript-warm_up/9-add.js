@@ -1,10 +1,10 @@
 #!/usr/bin/node
 
-first = parseInt(process.argv[2]);
-second = parseInt(process.argv[3]);
+const first = parseInt(process.argv[2]);
+const second = parseInt(process.argv[3]);
 
 if (isNaN(first) || isNaN(second)) {
-  console.log('NaN');
+  console.log('No numbers given');
 } else {
   console.log(first + second);
 }
