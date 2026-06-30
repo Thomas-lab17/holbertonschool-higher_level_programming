@@ -4,7 +4,7 @@ const first = parseInt(process.argv[2]);
 const second = parseInt(process.argv[3]);
 
 if (isNaN(first) || isNaN(second)) {
-  console.log('No numbers given');
+  console.log('NaN');
 } else {
   console.log(first + second);
 }
