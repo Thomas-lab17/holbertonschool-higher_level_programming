@@ -10,7 +10,7 @@ app = Flask(__name__, template_folder=template_dir)
 def items():
     with open('items.json', 'r') as f:
         data = json.load(f)
-    return render_template('items.html', items=data['items'])
+    return render_template('items.html', items=data.get('items', []))
 
 
 if __name__ == '__main__':
